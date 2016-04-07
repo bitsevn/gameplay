@@ -1,6 +1,7 @@
 import React from "react";
 import { Map } from "immutable";
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import NewClubModel from "./NewClubModel";
 
 export default class ClubContainer extends React.Component {
 
@@ -35,7 +36,7 @@ export default class ClubContainer extends React.Component {
             		<div className="col-md-4">
                         <div className="row">
                             <div className="col-md-4">
-                                <h4>{ this.state.data.get("mode") == "add_club" ? "New club" : "All clubs" }</h4>
+                                <h4>{ "All clubs" /*this.state.data.get("mode") == "add_club" ? "New club" : "All clubs"*/ }</h4>
                             </div>
                             <div className="col-md-8">
                                 { this.renderAddClubButton() }
@@ -43,18 +44,28 @@ export default class ClubContainer extends React.Component {
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                { (this.state.data.get("mode") == "add_club") ? this.renderAddClubForm() : this.renderAllClubs() }
+                                { /*(this.state.data.get("mode") == "add_club") ? this.renderAddClubForm() : this.renderAllClubs()*/ }
+                                { this.renderAllClubs() }
                             </div>
                         </div>
             		</div>
             	</div>
+                { this.renderModel() }
             </div>
         );
     }
 
+    handleHideModal(){
+        this.setImmutableState(d => d.update("mode", v => "list_clubs"));
+    }
+
+    handleShowModal(){
+        this.setImmutableState(d => d.update("mode", v => "add_club"));
+    }
+
     renderAddClubButton() {
-        if(this.state.data.get("mode") == "add_club") return null;
-        return <button className="btn btn-mini btn-success pull-right" onClick={ () => { this.onAddClub() } }>New club</button>;
+        /*if(this.state.data.get("mode") == "add_club") return null;*/
+        return <button className="btn btn-mini btn-success pull-right" onClick={ () => { this.handleShowModal() } }>New club</button>;
     }
 
     renderAddClubForm() {
@@ -63,5 +74,13 @@ export default class ClubContainer extends React.Component {
 
     renderAllClubs() {
         <span className="muted">Nothing to show.</span>
+    }
+
+    renderModel() {
+        if(this.state.data.get("mode") == "add_club") {
+          return  <NewClubModel handleHideModal={() => { this.handleHideModal() }} />
+        } else {
+            return null;
+        }
     }
 }

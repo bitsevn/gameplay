@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { Router, Route, IndexRoute, hashHistory } from "react-router";
+import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import AppContainer from "./components/layout/AppContainer";
 import Home from "./components/home/Home";
 import ClubContainer from "./components/clubs/ClubContainer";
@@ -10,7 +10,7 @@ import EventList from "./components/events/EventList";
 const app = document.getElementById('app');
 
 render(
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 	    <Route path="/" component={AppContainer}>
 	    	<IndexRoute component={Home}></IndexRoute>
 	      	<Route name="clubs" path="clubs" component={ClubContainer}></Route>
