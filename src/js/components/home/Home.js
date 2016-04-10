@@ -1,4 +1,5 @@
 import React from "react";
+import ToDoList from "./ToDoList";
 
 export default class Home extends React.Component {
     
@@ -6,6 +7,11 @@ export default class Home extends React.Component {
         return (
             <div>
                 <h3>Welcome to Gamifier!</h3>
+                <div className="row">
+                	<div className="col-md-3">
+                		<ToDoList/>
+                	</div>
+                </div>
             </div>
         );
     }

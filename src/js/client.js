@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+import render from "react-dom";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import AppContainer from "./components/layout/AppContainer";
 import Home from "./components/home/Home";

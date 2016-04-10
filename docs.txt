@@ -1,0 +1,76 @@
+=> Gamifiy <=
+
+This app enables it's users to host/manage any games in very simplistic manner.
+The idea is that any user can sign in/up for the app. Then users can create multiple Gaming Clubs under which they can add Players and 
+Gaming Events. A Gaming Event is like a season of IPL
+
+User
+|
+ - Information: id, name, email, password
+|
+ - Gaming Club(s)
+        |
+         - Information: id, title, tagline, address (street, landmark, city, country)
+        |
+         - Players
+        |       |
+        |        - Information: id, name, email
+        |       |
+        |        - sport_type: Badminton/Tennis
+        |       |
+        |        - stats: matches (played, won, lost, draw), ranking
+        |
+        |
+         _ Gaming Event(s)
+                |
+                 - Summary: id, name, tagline, sport_type
+                |
+                 - Rules: max_players, max_teams, total_budget, teamwise_budget, total_matches_to_be_played
+                |
+                 - Teams: id, name, tagline, budget (for auctioning)
+                |       |
+                |        - Players (ranking, base_price, bought_price)
+                |       |
+                |        - Matches (played, won, lost, draw, score)
+                |             
+                 - All Players (ranking, base_price)
+                |
+                 - Matches
+                |
+                 - Player Auctions
+                |
+                 - Player Votings
+
+
+---------------------
+<Gamify loggedInUser="arunk">
+    <GamingClubList>
+        <GamingClub id="100" name="MH Badminton Club" tagline="Never too late" address="Mumbai, MH, India">
+            <PlayerList>
+                <Player/>
+            </PlayerList>
+            <GamingEventList>
+                <GamingEvent>
+                    <Summary/>
+                    <RuleList>
+                        <Rule/>
+                    </RuleList>
+                    <TeamList>
+                        <Team>
+                            <Summary/>
+                            <PlayerList/>
+                            <MatchList/>
+                            <TeamScoreboard/>
+                        </Team>
+                    </TeamList>
+                    <PlayerList/>
+                    <MatchList/>
+                    <EventScoreboard/>
+                    <PlayerAuction/>
+                    <PlayerVoting/>
+                </GamingEvent>
+            </GamingEventList>
+        </GamingClub>
+    </GamingClubList>
+</Gamify>
+---------------------

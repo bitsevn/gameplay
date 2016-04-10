@@ -8,7 +8,8 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8081',
     'webpack/hot/only-dev-server',
-    './js/client.js'
+    //'./js/client.js'
+    './index.js'
   ],
   module: {
     loaders: [{
@@ -23,15 +24,24 @@ module.exports = {
   output: {
     path: __dirname + '/src/',
     publicPath: '/',
-    filename: 'client.min.js'
+    filename: 'index.min.js'
   },
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
-  plugins: debug ? [ new webpack.HotModuleReplacementPlugin() ] : [ 
+  plugins: debug ? [new webpack.HotModuleReplacementPlugin()] : [
+    new webpack.DefinePlugin({
+      'process.env': { 'NODE_ENV': JSON.stringify('production') }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false, compress: {warnings: false} })
+  ]
+ /*plugins: debug ? [ new webpack.HotModuleReplacementPlugin() ] : [ 
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
-  ]
+  ]*/
 };
